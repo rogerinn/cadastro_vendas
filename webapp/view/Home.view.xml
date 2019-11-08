@@ -1,0 +1,106 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.sociumit.Cadastro_de_Vendas_V01.controller.Home"
+displayBlock="true" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						
+						<form:SimpleForm editable="true" layout="ResponsiveGridLayout">
+							<form:content>
+								<Label text="Empresa" width="100%"/>
+								<Select items="{path: '/Empresas', model: 'dados'}" forceSelection="false" id="empresas">
+									<items>
+										<core:Item text="{dados>Nome}" />
+									</items>
+								</Select>
+								<Label text="Produto" width="100%"/>
+								<Select items="{path: '/Produtos', model: 'dados'}" id="produtos" change="precoProduto" forceSelection="false">
+									<items>
+										<core:Item text="{dados>Nome}" />
+									</items>
+								</Select>
+								<ObjectNumber id="precoProduto" unit="R$" textAlign="End"/>
+								<Label text="Quantidade" width="100%"/>
+								<Input placeholder="Número de itens vendidos" id="quantidade" type="Number"/>
+								<Label text="Data da Venda" width="100%"/>
+								<DatePicker id="data"/>
+							</form:content>
+							<form:title>
+								<core:Title text="Sua Venda" level="H1"/>
+							</form:title>
+						</form:SimpleForm>
+						
+						<Table noDataText="Sem Vendas" id="tabelaItems" mode="SingleSelect" items="{path: '/Vendas', model: 'dados'}">
+							<items>
+								<ColumnListItem type="Active">
+									<cells>
+										<Text text="{dados>Empresa}"/>
+										<Text text="{dados>Produto}"/>
+										<Text text="{dados>Quantidade}"/>
+										<Text text="{dados>DataVenda}"/>
+										<ObjectNumber number="{dados>Preco}" unit="R$"/>
+										<ObjectNumber number="{dados>PrecoTotal}" unit="R$"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+							<columns>
+								<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false">
+									<header>
+										<Label text="Empresa"/>
+									</header>
+								</Column>
+								<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true">
+									<header>
+										<Label text="Produto"/>
+									</header>
+								</Column>
+								<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true">
+									<header>
+										<Label text="Quantidade"/>
+									</header>
+								</Column>
+								<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true">
+									<header>
+										<Label text="Data da Venda" width="100%"/>
+									</header>
+								</Column>
+								<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true">
+									<header>
+										<Label text="Preço Unitário" width="100%"/>
+									</header>
+								</Column>
+								<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true">
+									<header>
+										<Label text="Preço Total" width="100%"/>
+									</header>
+								</Column>
+							</columns>
+							<headerToolbar>
+								<OverflowToolbar>
+									<Toolbar width="100%" >
+										<content>
+											<Title text="Vendas Confirmadas"/>
+										</content>
+									</Toolbar>
+								</OverflowToolbar>
+							</headerToolbar>
+						</Table>
+						
+					</content>
+					
+					<footer>
+						<Toolbar width="100%">
+							<content>
+								<Button text="Deletar Venda" type="Reject" press="deletarVenda" />
+								<ToolbarSpacer/>
+								<Button text="Confirmar Venda" type="Accept" press="confirmarVenda" />
+							</content>
+						</Toolbar>
+					</footer>
+					
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

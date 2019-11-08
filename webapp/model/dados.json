@@ -1,0 +1,23 @@
+{
+  "Empresas": [
+    {"Nome": "BRF S.A."},
+    {"Nome": "JBS"},
+    {"Nome": "Bunge"}
+  ],
+  "Produtos": [
+    {
+      "Nome": "Pizza Quatro Queijos Congelada",
+      "Preco": 10.99
+    },
+    {
+      "Nome": "Nuggets de Frango",
+      "Preco": 5.76
+    },
+    {
+      "Nome": "Batata Frita 2kg",
+      "Preco": 9.10
+    }
+  ],
+  "Vendas": [
+  ]
+}
