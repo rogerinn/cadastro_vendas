@@ -81,7 +81,7 @@ sap.ui.define([
 				"Empresa": empresa,
 				"Produto": produto,
 				"Preco": precoProduto,
-				"PrecoTotal": precoProduto * quantidade,
+				"PrecoTotal": (precoProduto * quantidade).toFixed(2),
 				"Quantidade": quantidade,
 				"DataVenda": data.getDate() + "/" + (data.getMonth() + 1) + "/" + data.getFullYear()
 			};
