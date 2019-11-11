@@ -70,20 +70,20 @@ sap.ui.define([
 			}
 
 			//Pega todos os dados da tela		
-			var empresa = this.byId("empresas").getSelectedItem().getText();
-			var produto = this.byId("produtos").getSelectedItem().getText();
-			var precoProduto = this.byId("precoProduto").getNumber();
-			var quantidade = this.byId("quantidade").getValue();
-			var data = this.byId("data").getDateValue();
+			var empresa = this.byId("empresas").getSelectedItem();
+			var produto = this.byId("produtos").getSelectedItem();
+			var precoProduto = this.byId("precoProduto");
+			var quantidade = this.byId("quantidade");
+			var data = this.byId("data");
 
 			//Monta o novo objeto para "appendar" no modelo
 			var novaVenda = {
-				"Empresa": empresa,
-				"Produto": produto,
-				"Preco": precoProduto,
-				"PrecoTotal": (precoProduto * quantidade).toFixed(2),
-				"Quantidade": quantidade,
-				"DataVenda": data.getDate() + "/" + (data.getMonth() + 1) + "/" + data.getFullYear()
+				"Empresa": empresa.getText(),
+				"Produto": produto.getText(),
+				"Preco": precoProduto.getNumber(),
+				"PrecoTotal": (precoProduto.getNumber() * quantidade.getValue()).toFixed(2),
+				"Quantidade": quantidade.getValue(),
+				"DataVenda": data.getDateValue().getDate() + "/" + (data.getDateValue().getMonth() + 1) + "/" + data.getDateValue().getFullYear()
 			};
 
 			//Colocando a nova venda dentro do nosso modelo. Como é um array, dá pra dar um push
@@ -91,6 +91,13 @@ sap.ui.define([
 
 			//Setando o novo modelo na aplicação
 			oModel.setProperty("/Vendas", vendas);
+			
+			//Limpando os campos de tela
+			this.byId("empresas").setSelectedItem(null);
+			this.byId("produtos").setSelectedItem(null);
+			precoProduto.setNumber("");
+			quantidade.setValue("");
+			data.setValue("");
 		},
 		deletarVenda: function () {
 			//Pegar o modelo
